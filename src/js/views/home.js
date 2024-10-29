@@ -1,4 +1,4 @@
-import React, { useContext }from "react";
+import React, { useContext, useState, useEffect }from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
@@ -8,21 +8,36 @@ import UpdateContact from '../component/updateContact'
 
 export const Home = () => {
 	const {store, actions} = useContext(Context)
-	const pets = [
-		{"name" : "Chibi", "gender" : "male", "breed" : "Shih tzu", "email" : "Chibi@woof.com"},
-		{"name" : "Chili", "gender" : "male", "breed" : "Shih tzu", "email" : "Chili@woof.com"},
-		{"name" : "Cloudy", "gender" : "female", "breed" : "daschund", "email" : "Cloudy@woof.com"},
-		{"name" : "Empi", "gender" : "female", "breed" : "Golden Lab", "email" : "Empi@woof.com"}
-	]
+
+	useEffect(() => {
+		const createAgenda = async () => {
+			let response = await fetch("https://playground.4geeks.com/contact/agendas/pmvroque", {
+				type:"string",
+				method: "POST",
+				headers: {"Content-Type": "application/json"},
+			})
+			let data = await response.json()
+			
+			if(data.slug != "pmvroque") {
+				let postResponse = await fetch("https://playground.4geeks.com/contact/agendas/pmvroque", {
+					type: "string",
+					method: "POST"
+				})
+				
+				let postData = await response.json()
+			}
+		}
+		
+	}, [])
+
+	
 
 	return (
 	<div>
-		<Link to={'/addContact'} className="btn btn-info">Add A Pet</Link>
-		{store.pets?.map((user, index) => {
-			return (
-			<ContactCard key={index} name={user.name} gender={user.gender} breed={user.breed} email={user.email}/>
+		<Link to={'/addContact'} className="btn btn-info">Create Contact</Link>
+		<ContactCard />
 			
-		)})}
+		
 		
 	</div>
 	)
