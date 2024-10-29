@@ -1,21 +1,41 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
+			pets: [  
+				{"name" : "Chibi", "gender" : "male", "breed" : "Shih tzu", "email" : "Chibi@woof.com"},
+				{"name" : "Chili", "gender" : "male", "breed" : "Shih tzu", "email" : "Chili@woof.com"},
+				{"name" : "Cloudy", "gender" : "female", "breed" : "daschund", "email" : "Cloudy@woof.com"},
+				{"name" : "Empi", "gender" : "female", "breed" : "Golden Lab", "email" : "Empi@woof.com"}
+			]},
 		actions: {
 			// Use getActions to call a function within a fuction
+			createPet: (name, email, breed, gender) => {
+				let pet = {name: name, email: email, breed: breed, gender: gender}
+				setStore({pets: [...getStore().pets, pet]})
+			  },
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
