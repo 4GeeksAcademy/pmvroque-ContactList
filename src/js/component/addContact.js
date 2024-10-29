@@ -1,30 +1,43 @@
-import React from "react";
+import React, {use} from "react";
 
-export default function AddContact() {
+export const AddContact = () => {
   return (
     <div>
-      <div className="mb-3">
-        <label for="formGroupExampleInput" className="form-label">
-          Example label
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="formGroupExampleInput"
-          placeholder="Example input placeholder"
-        />
-      </div>
-      <div className="mb-3">
-        <label for="formGroupExampleInput2" className="form-label">
-          Another label
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="formGroupExampleInput2"
-          placeholder="Another input placeholder"
-        />
-      </div>
+      <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">
+            Email address
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1">
+            Check me out
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
     </div>
   );
-}
+};
