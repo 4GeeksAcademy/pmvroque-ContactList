@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect }from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
-import AddContact from "../component/addContact";
 import ContactCard from '../component/contactCard'
 import UpdateContact from '../component/updateContact'
 
@@ -12,7 +11,7 @@ export const Home = () => {
 	useEffect(() => {
 		const createAgenda = async () => {
 			let response = await fetch("https://playground.4geeks.com/contact/agendas/pmvroque", {
-				type:"string",
+				
 				method: "POST",
 				headers: {"Content-Type": "application/json"},
 			})
@@ -20,14 +19,14 @@ export const Home = () => {
 			
 			if(data.slug != "pmvroque") {
 				let postResponse = await fetch("https://playground.4geeks.com/contact/agendas/pmvroque", {
-					type: "string",
+					
 					method: "POST"
 				})
 				
 				let postData = await response.json()
 			}
 		}
-		
+		createAgenda()
 	}, [])
 
 	
@@ -35,8 +34,15 @@ export const Home = () => {
 	return (
 	<div>
 		<Link to={'/addContact'} className="btn btn-info">Create Contact</Link>
-		<ContactCard />
-			
+		
+		{store.users.length > 0 ? store.users.map((user, index) => {
+			return(
+			<ContactCard key={index} user={user}/>
+			)
+		})
+		:
+		<h1>No users!</h1>
+	}
 		
 		
 	</div>
