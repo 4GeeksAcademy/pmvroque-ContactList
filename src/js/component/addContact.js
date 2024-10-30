@@ -22,10 +22,7 @@ export const AddContact = () => {
 
       }
       
-    
-      
-      
-  
+
   return (
     <div>
       

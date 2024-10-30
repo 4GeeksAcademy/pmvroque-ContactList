@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 export default function ContactCard(props) {
 
@@ -11,8 +13,11 @@ export default function ContactCard(props) {
           <p className="card-text">Phone: {props.user?.phone}</p>
           <p className="card-text">Email: {props.user?.email}</p>
           <p className="card-text">Address: {props.user?.address}</p>
-          <a href="#" className="btn btn-primary">
-            Go somewhere
+          <Link to={'/updateContact'} href="#" className="btn btn-primary mx-2">
+            Update
+          </Link>
+          <a href="#" className="btn btn-primary mx-2">
+            delete
           </a>
         </div> 
       </div>
