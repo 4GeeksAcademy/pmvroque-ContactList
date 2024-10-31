@@ -13,7 +13,7 @@ export default function ContactCard(props) {
           <p className="card-text">Phone: {props.user?.phone}</p>
           <p className="card-text">Email: {props.user?.email}</p>
           <p className="card-text">Address: {props.user?.address}</p>
-          <Link to={'/updateContact'} href="#" className="btn btn-primary mx-2">
+          <Link to={'/updateContact/' + props.user.id} href="#" className="btn btn-primary mx-2">
             Update
           </Link>
           <a href="#" className="btn btn-primary mx-2">

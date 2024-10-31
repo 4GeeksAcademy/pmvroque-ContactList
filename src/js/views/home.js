@@ -9,25 +9,29 @@ export const Home = () => {
 	const {store, actions} = useContext(Context)
 
 	useEffect(() => {
-		const createAgenda = async () => {
-			let response = await fetch("https://playground.4geeks.com/contact/agendas/pmvroque", {
-				
-				method: "POST",
-				headers: {"Content-Type": "application/json"},
-			})
-			let data = await response.json()
-			
-			if(data.slug != "pmvroque") {
-				let postResponse = await fetch("https://playground.4geeks.com/contact/agendas/pmvroque", {
-					
-					method: "POST"
-				})
-				
-				let postData = await response.json()
-			}
-		}
-		createAgenda()
-	}, [])
+    const createAgenda = async () => {
+      let response = await fetch(
+        "https://playground.4geeks.com/contact/agendas/pmvroque",
+        {
+          method: "GET",
+        }
+      );
+
+      let data = await response.json();
+      if (data.details == 'Agenda "pmvroque" doesn\'t exist.') {
+        let response = await fetch(
+          "https://playground.4geeks.com/contact/agendas/pmvroque",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        let data = await response.json();
+      }
+    };
+    createAgenda();
+	actions.getAllContacts()
+  }, []);
 
 	
 
