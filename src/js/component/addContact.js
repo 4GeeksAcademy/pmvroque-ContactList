@@ -18,6 +18,7 @@ export const AddContact = () => {
         
         })
         let data = await response.json()
+        console.log(user, "here's the data")
         navigate("/")
 
       }

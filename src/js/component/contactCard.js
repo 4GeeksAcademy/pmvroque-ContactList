@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 
 export default function ContactCard(props) {
 
+  const {store, actions} = useContext(Context)
+  
     return (
       
       <div className="card" style={{"width" : "18rem"}}> 
@@ -13,7 +16,11 @@ export default function ContactCard(props) {
           <p className="card-text">Phone: {props.user?.phone}</p>
           <p className="card-text">Email: {props.user?.email}</p>
           <p className="card-text">Address: {props.user?.address}</p>
-          <Link to={'/updateContact/' + props.user.id} href="#" className="btn btn-primary mx-2">
+          <Link 
+            to={'/updateContact/' + props.user.id} 
+            className="btn btn-primary mx-2"
+            onClick={()=>actions.updateContactData(props.user)}
+          >
             Update
           </Link>
           <a href="#" className="btn btn-primary mx-2">

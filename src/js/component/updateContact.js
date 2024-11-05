@@ -1,13 +1,16 @@
-import React, { useState }from 'react'
+import React, { useState, useContext }from 'react'
+import { Context } from "../store/appContext";
 import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 export const UpdateContact = () => {
+  const {store, actions} = useContext(Context)
   const navigate = useNavigate()
-  const [user, setUser] = useState({id: id, name: "", phone: "", email: "", address: ""})
+  const userData =  store.updateUserData
+  const [user, setUser] = useState({id: id, name: userData.name, phone: userData.phone, email: userData.email, address: userData.address})
   const {id} = useParams()
 
-  const updateContact = async (user) => {
+  const updateContact = async (user, name) => {
     let response = await fetch("https://playground.4geeks.com/contact/agendas/pmvroque/contacts/" + id, {
 
       method: "PUT",
@@ -26,6 +29,7 @@ export const UpdateContact = () => {
             Name
           </span>
           <input
+          value={user.name}
           onChange={(e) => setUser(
             (prvUser) => ({...prvUser, name: e.target.value})
           )}
@@ -36,11 +40,13 @@ export const UpdateContact = () => {
             
           />
         </div>
+
         <div className="input-group mb-3">
           <span className="input-group-text" id="inputGroup-sizing-default">
             Email
           </span>
           <input
+            value={user.email}
             onChange={(e) => setUser(
               (prvUser) => ({...prvUser, email: e.target.value})
             )}
@@ -51,11 +57,13 @@ export const UpdateContact = () => {
             
           />
         </div>
+
         <div className="input-group mb-3">
           <span className="input-group-text" id="inputGroup-sizing-default">
             Phone
           </span>
           <input
+            value={user.phone}
             onChange={(e) => setUser(
               (prvUser) => ({...prvUser, phone: e.target.value})
             )}
@@ -66,11 +74,13 @@ export const UpdateContact = () => {
             
           />
         </div>
+
         <div className="input-group mb-3">
           <span className="input-group-text" id="inputGroup-sizing-default">
             Address
           </span>
           <input
+            value={user.address}
             onChange={(e) => setUser(
               (prvUser) => ({...prvUser, address: e.target.value})
             )}

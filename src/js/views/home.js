@@ -18,7 +18,8 @@ export const Home = () => {
       );
 
       let data = await response.json();
-      if (data.details == 'Agenda "pmvroque" doesn\'t exist.') {
+      if (data.detail == 'Agenda "pmvroque" doesn\'t exist.') {
+        console.log("no slug")
         let response = await fetch(
           "https://playground.4geeks.com/contact/agendas/pmvroque",
           {
@@ -33,13 +34,13 @@ export const Home = () => {
 	actions.getAllContacts()
   }, []);
 
-	
+	console.log(store.users)
 
 	return (
 	<div>
 		<Link to={'/addContact'} className="btn btn-info">Create Contact</Link>
 		
-		{store.users.length > 0 ? store.users.map((user, index) => {
+		{store.users?.length > 0 ? store.users.map((user, index) => {
 			return(
 			<ContactCard key={index} user={user}/>
 			)
