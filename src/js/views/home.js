@@ -6,6 +6,7 @@ import ContactCard from '../component/contactCard'
 import UpdateContact from '../component/updateContact'
 
 export const Home = () => {
+  const [userArray, setUserArray] = useState([]) 
 	const {store, actions} = useContext(Context)
 
 	useEffect(() => {
@@ -33,8 +34,18 @@ export const Home = () => {
     createAgenda();
 	actions.getAllContacts()
   }, []);
-
-	console.log(store.users)
+  if (userArray.length == 0) {
+    setUserArray(store.users)
+    console.log(userArray, "here's the user array")
+  }
+	
+  const handleDelete = (user) => {
+    let updatedUserArray = userArray.filter(filterUser => filterUser.id !== user.id)
+    console.log(updatedUserArray, "here's the updated arr")
+    console.log(userArray, "here's the user")
+    setUserArray(updatedUserArray)
+    // actions.deleteContact(user)
+  }
 
 	return (
 	<div>
@@ -42,7 +53,7 @@ export const Home = () => {
 		
 		{store.users?.length > 0 ? store.users.map((user, index) => {
 			return(
-			<ContactCard key={index} user={user}/>
+			<ContactCard key={index} user={user} deleteContact={handleDelete}/>
 			)
 		})
 		:

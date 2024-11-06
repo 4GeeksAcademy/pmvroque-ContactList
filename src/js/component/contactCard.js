@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function ContactCard(props) {
 
   const {store, actions} = useContext(Context)
-  
+
     return (
       
       <div className="card" style={{"width" : "18rem"}}> 
@@ -23,11 +23,18 @@ export default function ContactCard(props) {
           >
             Update
           </Link>
-          <a href="#" className="btn btn-primary mx-2">
+          <a  
+            className="btn btn-primary mx-2"
+            onClick={()=>{
+              props.deleteContact(props.user)
+            }}
+          >
             delete
           </a>
         </div> 
       </div>
+
+
       
     );
 }
